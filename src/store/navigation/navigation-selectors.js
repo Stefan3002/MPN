@@ -1,0 +1,1 @@
+export const getNavigationExtended = (state) => state.navigation.extended

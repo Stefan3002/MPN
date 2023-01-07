@@ -1,0 +1,47 @@
+.navigation-extension {
+  overflow: auto;
+  background-color: rgba(211, 211, 211, 0.5);
+  padding: 2em;
+  height: calc(100vh - 1em);
+  width: 15vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation-name: slide-right;
+  animation-duration: 0.3s;
+}
+.navigation-extension .navigation-option {
+  display: flex;
+  align-content: center;
+  transition: all 0.2s;
+  padding: 0.5em;
+}
+.navigation-extension .navigation-option p {
+  text-align: center;
+}
+.navigation-extension .navigation-option:hover {
+  transform: scale(1.1);
+  background: whitesmoke;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.navigation-extension .navigation-icons {
+  display: flex;
+  flex-direction: column;
+}
+.navigation-extension .navigation-icons .navigation-icon {
+  margin: 1em 0;
+  width: 80px;
+  margin-right: 1.5em;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/*# sourceMappingURL=navigation-extension.css.map */

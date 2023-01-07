@@ -1,0 +1,15 @@
+.button {
+  background: whitesmoke;
+  border: 0;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+.button .button-content {
+  display: flex;
+}
+.button .button-content img {
+  margin-right: 0.5em;
+  width: 50px;
+}
+
+/*# sourceMappingURL=button.css.map */

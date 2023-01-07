@@ -1,0 +1,21 @@
+.auth-page .bottom-section {
+  background-image: url("../../utils/images/AuthBG.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+.auth-page h1 {
+  margin: 0;
+}
+.auth-page .top-section {
+  padding: 2em;
+  width: 20em;
+  background: rgba(211, 211, 211, 0.7);
+  position: absolute;
+  z-index: 100;
+}
+.auth-page .top-section-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=auth-page.css.map */

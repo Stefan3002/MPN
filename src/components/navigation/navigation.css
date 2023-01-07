@@ -1,0 +1,36 @@
+.navigation {
+  margin-right: 5em;
+  overflow: auto;
+  background-color: rgba(211, 211, 211, 0.5);
+  padding: 1em;
+  height: calc(100vh - 1em);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  animation-name: slide-right;
+  animation-duration: 0.4s;
+}
+.navigation .navigation-icons {
+  display: flex;
+  flex-direction: column;
+}
+.navigation .navigation-icons .navigation-icon {
+  margin: 1em 0;
+  width: 80px;
+}
+
+.app-wrapper {
+  display: flex;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/*# sourceMappingURL=navigation.css.map */
