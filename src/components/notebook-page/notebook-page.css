@@ -1,5 +1,10 @@
 .notebook-page .icon {
   width: 80px;
 }
+.notebook-page .add-button {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
 
 /*# sourceMappingURL=notebook-page.css.map */

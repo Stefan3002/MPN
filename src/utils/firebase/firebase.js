@@ -4,7 +4,7 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 import {signInWithPopup, getAuth, GoogleAuthProvider, onAuthStateChanged} from 'firebase/auth'
-import {doc, setDoc, getDoc, getFirestore} from 'firebase/firestore'
+import {doc, setDoc, getDoc, getFirestore, collection, getDocs} from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -35,6 +35,7 @@ export const createUserDocBack = async (userData) => {
             displayName,
             email,
             photoURL,
+            notes: [],
             createdAt
         })
         return userSnap
@@ -47,5 +48,34 @@ export const getUserDataBack = async (uid) => {
         return undefined
     else
         return docSnap.data()
+}
+
+export const addNoteBack = async (title, content, selectedLang, uid) => {
+    const docRef = doc(db, 'users', uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else {
+        const createdAt = new Date()
+        const notes = docSnap.data().notes
+        notes.push({
+            title,
+            content,
+            selectedLang,
+            createdAt
+        })
+        await setDoc(docRef, {
+            ...docSnap.data(),
+            notes
+        })
+        return await getDoc(docRef)
+    }
+}
+export const getLanguagesBack = async () => {
+    const languages = []
+    const docsSnap = await getDocs(collection(db, 'languages'))
+    console.log(docsSnap)
+    docsSnap.forEach((docSnap) => languages.push(docSnap.data()))
+    return languages
 }
 export const onAuthStateChangedListener = (cb) => onAuthStateChanged(auth, cb)

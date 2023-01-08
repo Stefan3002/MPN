@@ -1,29 +1,34 @@
 import './notebook-page.css'
 import AddSVG from '../../utils/images/AddSVG.svg'
-import {useSelector} from "react-redux";
-import {getUser} from "../../store/user/user-selectors";
+import {useDispatch, useSelector} from "react-redux";
+import {getUser, getUserData} from "../../store/user/user-selectors";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 import AddNotePage from "../add-note-page/add-note-page";
 import Blur from "../blur/blur";
+import {setAddNotesExtended} from "../../store/notes/notes-actions";
+import {getAddNotesExtended} from "../../store/notes/notes-selectors";
+import NotesViewer from "../notes-viewer/notes-viewer";
 const NotebookPage = () => {
     const user = useSelector(getUser)
+    const userData = useSelector(getUserData)
     const navigate = useNavigate()
     useEffect(() => {
         if(!user)
             navigate('/auth')
     }, [user])
-    const [addPage, setAddPage] = useState(false)
-
+    const dispatch = useDispatch()
+    const addPage = useSelector(getAddNotesExtended)
     const addNote = () => {
-        setAddPage(true)
+        dispatch(setAddNotesExtended(true))
     }
 
     return (
         <div className='notebook-page'>
             <h1>Your Notebook</h1>
-            <img onMouseDown={addNote} className='icon' src={AddSVG} alt=""/>
+            <img onMouseDown={addNote} className='add-button icon' src={AddSVG} alt=""/>
             {addPage ? <div> <Blur /> <AddNotePage /></div> : null}
+            {userData ? <NotesViewer notes={userData.notes} /> : null}
         </div>
     )
 }

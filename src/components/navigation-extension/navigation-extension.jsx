@@ -24,7 +24,7 @@ const NavigationExtension = () => {
                     {
                         user ? <Link to='/profile'><span className="navigation-option"><img className='navigation-icon' src={maleAvatarSVG} alt=""/><p>{userData ? userData.displayName : null}</p></span></Link> : <Link to='/auth'><span className='navigation-option'><img className='navigation-icon' src={AuthSVG} alt=""/><p>Authenticate</p></span></Link>
                     }
-                    <span className='navigation-option'><img className='navigation-icon' src={HomeSVG} alt=""/><p>Home</p></span>
+                    <Link to='/home'><span className='navigation-option'><img className='navigation-icon' src={HomeSVG} alt=""/><p>Home</p></span></Link>
                     <Link to='/notebook'><span className='navigation-option'><img className='navigation-icon' src={NotebookSVG} alt=""/><p>Notebook</p></span></Link>
                 </div>
             </div>
