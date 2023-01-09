@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import HomeSVG from "../../utils/images/House.svg";
 import NotebookSVG from "../../utils/images/Notebook.svg";
 import AuthSVG from '../../utils/images/AuthSVG.svg'
+import ArrowsSVG from '../../utils/images/ArrowsSVG.svg'
 import maleAvatarSVG from '../../utils/images/MaleAvatar.svg'
 import {getUser, getUserData} from "../../store/user/user-selectors";
 import {Link} from "react-router-dom";
@@ -26,6 +27,7 @@ const NavigationExtension = () => {
                     }
                     <Link to='/home'><span className='navigation-option'><img className='navigation-icon' src={HomeSVG} alt=""/><p>Home</p></span></Link>
                     <Link to='/notebook'><span className='navigation-option'><img className='navigation-icon' src={NotebookSVG} alt=""/><p>Notebook</p></span></Link>
+                    <Link to='/feed'><span className='navigation-option'><img className='navigation-icon' src={ArrowsSVG} alt=""/><p>Feed</p></span></Link>
                 </div>
             </div>
             <div className="bottom-content">

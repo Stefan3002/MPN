@@ -10,3 +10,9 @@ export const setSelectedLang = (lang) => {
         payload: lang
     }
 }
+export const setShareable = (bool) => {
+    return {
+        type: "SET_SHAREABLE",
+        payload: bool
+    }
+}

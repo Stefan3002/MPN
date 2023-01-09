@@ -1,5 +1,6 @@
 .note
-  width: 280px
+  min-width: 280px
+  width: fit-content
   height: 350px
   background: whitesmoke
   padding: 1em
@@ -15,10 +16,15 @@
     text-align: left
     font-size: 1.4em
   .icon
-    width: 60px
+    height: 70px
+    border-radius: 50%
+    width: 70px
     margin-left: 10px
   .note-title
     display: flex
+    justify-content: space-between
+    img
+      margin-left: 1em
   hr
     border: 5px dotted gray
     border-bottom: 0

@@ -1,0 +1,17 @@
+.stat {
+  background: whitesmoke;
+  width: fit-content;
+  padding: 0.5em;
+  margin: 1em;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.stat .stat-icon {
+  width: 80px;
+}
+.stat:hover {
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+/*# sourceMappingURL=stat.css.map */

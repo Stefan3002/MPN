@@ -1,0 +1,44 @@
+.note-extension {
+  text-align: center;
+  background: white;
+  padding: 2em;
+  border-radius: 10px;
+  z-index: 10;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80%;
+  overflow: auto;
+  max-width: 80%;
+}
+.note-extension .icon {
+  width: 80px;
+}
+.note-extension .note-body {
+  text-align: left;
+}
+.note-extension .note-header {
+  display: flex;
+  justify-content: space-between;
+}
+.note-extension .note-header img {
+  margin-left: 1em;
+}
+.note-extension .menu {
+  display: flex;
+  justify-content: space-between;
+}
+.note-extension .menu .crud-menu .icon {
+  width: 80px;
+  border-radius: 10px;
+  margin: 0.3em;
+  transition: all 0.1s;
+}
+.note-extension .menu .crud-menu .icon:hover {
+  transform: scale(1.1);
+  transition: all 0.1s;
+  background: whitesmoke;
+}
+
+/*# sourceMappingURL=note-extension.css.map */

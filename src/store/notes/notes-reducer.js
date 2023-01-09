@@ -1,5 +1,7 @@
 const INITIAL_VALUE = {
-    addNotesExtended : false
+    addNotesExtended : false,
+    noteExtended : false,
+    noteExtendedData : null
 }
 
 export const notesReducer = (state = INITIAL_VALUE, action) => {
@@ -9,6 +11,16 @@ export const notesReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 addNotesExtended: payload
+            }
+        case "SET_NOTE_EXTENDED":
+            return {
+                ...state,
+                noteExtended: payload
+            }
+        case "SET_NOTE_EXTENDED_DATA":
+            return {
+                ...state,
+                noteExtendedData: payload
             }
         default:
             return state

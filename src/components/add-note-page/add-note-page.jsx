@@ -8,8 +8,11 @@ import addSVG from '../../utils/images/AddSVG.svg'
 import {getUser, getUserData} from "../../store/user/user-selectors";
 import {addNoteBack} from "../../utils/firebase/firebase";
 import {setUserData} from "../../store/user/user-actions";
-import {getLanguages, getSelectedLang} from "../../store/utils/utils-selectors";
+import {getLanguages, getSelectedLang, getShareable} from "../../store/utils/utils-selectors";
 import LanguagesViewer from "../languages-viewer/languages-viewer";
+import ShareSVG from '../../utils/images/ShareSVG.svg'
+import {setShareable} from "../../store/utils/utils-actions";
+import ShareableViewer from "../shareable-viewer/shareable-viewer";
 const AddNotePage = () => {
     const dispatch = useDispatch()
     const languages = useSelector(getLanguages)
@@ -17,6 +20,7 @@ const AddNotePage = () => {
     const closeAddNoteMenu = () => {
         dispatch(setAddNotesExtended(false))
     }
+    const shareable = useSelector(getShareable)
     const user = useSelector(getUser)
     const addNoteFront = async (event) => {
         event.preventDefault()
@@ -24,10 +28,12 @@ const AddNotePage = () => {
         const content = event.target[1].value
         if(!selectedLang)
             selectedLang = 'Plain text'
-        const docSnap = await addNoteBack(title, content, selectedLang, user.uid)
+        const docSnap = await addNoteBack(title, content, selectedLang, shareable, user.uid)
         dispatch(setAddNotesExtended(false))
         dispatch(setUserData(docSnap.data()))
     }
+
+
 
     return (
         <div className='add-note-page'>
@@ -44,7 +50,9 @@ const AddNotePage = () => {
                 <br/>
                 <label>Language</label>
                 <br/>
-                <LanguagesViewer languages={languages} />
+                <span className="lang-viewer"><LanguagesViewer languages={languages} /></span>
+                <p>Shareable?</p>
+                <span className="shareable-viewer-helper"><ShareableViewer /></span>
                 <br/>
                 <Button text='Add' img={addSVG} onClickHandler={undefined} />
             </form>

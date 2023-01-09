@@ -12,6 +12,10 @@
   border-radius: 10px;
   z-index: 100;
 }
+.add-note-page .lang-viewer, .add-note-page .shareable-viewer-helper {
+  display: flex;
+  justify-content: center;
+}
 
 @keyframes pop-up {
   from {

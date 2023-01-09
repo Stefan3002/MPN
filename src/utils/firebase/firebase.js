@@ -36,6 +36,7 @@ export const createUserDocBack = async (userData) => {
             email,
             photoURL,
             notes: [],
+            following: [],
             createdAt
         })
         return userSnap
@@ -50,7 +51,7 @@ export const getUserDataBack = async (uid) => {
         return docSnap.data()
 }
 
-export const addNoteBack = async (title, content, selectedLang, uid) => {
+export const addNoteBack = async (title, content, selectedLang, shareable, uid) => {
     const docRef = doc(db, 'users', uid)
     const docSnap = await getDoc(docRef)
     if(!docSnap.exists())
@@ -62,6 +63,7 @@ export const addNoteBack = async (title, content, selectedLang, uid) => {
             title,
             content,
             selectedLang,
+            shareable,
             createdAt
         })
         await setDoc(docRef, {
@@ -74,8 +76,66 @@ export const addNoteBack = async (title, content, selectedLang, uid) => {
 export const getLanguagesBack = async () => {
     const languages = []
     const docsSnap = await getDocs(collection(db, 'languages'))
-    console.log(docsSnap)
     docsSnap.forEach((docSnap) => languages.push(docSnap.data()))
     return languages
 }
+
+export const deleteNoteBack = async (uid, noteTitle) => {
+    const docRef = doc(db, 'users', uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const {notes} = docSnap.data()
+        const newNotes = notes.filter((note) => note.title !== noteTitle)
+        await setDoc(docRef, {
+            ...docSnap.data(),
+            notes: newNotes
+        })
+        const newDocSnap = await getDoc(docRef)
+        return newDocSnap.data()
+    }
+}
+export const modifyNoteBack = async (uid, noteTitle, newNote) => {
+    const docRef = doc(db, 'users', uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const {notes} = docSnap.data()
+        const newNotes = notes.filter((note) => note.title !== noteTitle)
+        await setDoc(docRef, {
+            ...docSnap.data(),
+            notes: newNotes
+        })
+        const newDocSnap = await getDoc(docRef)
+        return newDocSnap.data()
+    }
+}
+
+export const computeFeedBack = async (currentUser) => {
+    if(currentUser) {
+        const feed = []
+        const usersSnap = await getDocs(collection(db, 'users'))
+        usersSnap.forEach((userSnap) => {
+            const userData = userSnap.data()
+            const {email} = userSnap.data()
+            if (currentUser.following.filter((following) => following === email).length === 1) {
+                const {notes, displayName, photoURL} = userData
+                notes.forEach((note) => {
+                    if (note.shareable)
+                        feed.push({
+                            userDisplayName: displayName,
+                            userNote: note,
+                            userImg: photoURL
+                        })
+                })
+            }
+        })
+        return feed
+    }
+    else
+        return []
+}
+
 export const onAuthStateChangedListener = (cb) => onAuthStateChanged(auth, cb)

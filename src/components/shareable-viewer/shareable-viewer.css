@@ -1,0 +1,13 @@
+.shareable-viewer {
+  background: white;
+  width: fit-content;
+  padding: 0.8em;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.shareable-viewer:hover {
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+/*# sourceMappingURL=shareable-viewer.css.map */

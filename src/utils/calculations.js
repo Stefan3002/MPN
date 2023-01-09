@@ -9,3 +9,7 @@ export const computeStatsLanguages = (notes) => {
     }, {})
     return stats
 }
+
+export const getLangData = (languages, selectedLang) => (languages.filter((lang) => lang.name === selectedLang))[0]
+
+

@@ -3,6 +3,9 @@ import NotesViewer from "../notes-viewer/notes-viewer";
 import {useSelector} from "react-redux";
 import {getUserData} from "../../store/user/user-selectors";
 import {useEffect} from "react";
+import {getAddNotesExtended, getNoteExtended, getNoteExtendedData} from "../../store/notes/notes-selectors";
+import NoteExtension from "../note-extension/note-extension";
+import Blur from "../blur/blur";
 const HomePage = () => {
 
     const userData = useSelector(getUserData)
@@ -12,16 +15,21 @@ const HomePage = () => {
         notes = userData.notes
         profileImg = userData.photoURL
     }
+
+    const noteExtended = useSelector(getNoteExtended)
+    const noteExtendedData = useSelector(getNoteExtendedData)
+
     return (
         <div className='home-page'>
             <div className="recents">
                 <p className='section-title'>Recent notes</p>
-                {notes ? <NotesViewer notes={notes.slice(0,3)} /> : null}
+                {notes ? <NotesViewer notes={notes.slice(-2).reverse()} /> : null}
             </div>
             <div className="snapshot">
                 <p className="section-title">Programmer</p>
                 <img className='profile-img' src={profileImg} alt=""/>
             </div>
+            {noteExtended ? <div><Blur /><NoteExtension noCRUD={false} note={noteExtendedData} /></div> : null}
         </div>
     )
 }

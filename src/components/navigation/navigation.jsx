@@ -6,6 +6,7 @@ import extendNavigation from "../../store/navigation/navigation-actions";
 import {userReducer} from "../../store/user/user-reducer";
 import {getUser} from "../../store/user/user-selectors";
 import AuthSVG from '../../utils/images/AuthSVG.svg'
+import ArrowsSVG from '../../utils/images/ArrowsSVG.svg'
 import maleAvatarSVG from '../../utils/images/MaleAvatar.svg'
 import {Outlet} from "react-router";
 
@@ -29,6 +30,7 @@ const Navigation = () => {
                         }
                         <img className='navigation-icon' src={HomeSVG} alt=""/>
                         <img className='navigation-icon' src={NotebookSVG} alt=""/>
+                        <img className='navigation-icon' src={ArrowsSVG} alt=""/>
                     </div>
                 </div>
                 <div className="bottom-content">

@@ -1,5 +1,6 @@
 .note {
-  width: 280px;
+  min-width: 280px;
+  width: fit-content;
   height: 350px;
   background: whitesmoke;
   padding: 1em;
@@ -17,11 +18,17 @@
   font-size: 1.4em;
 }
 .note .icon {
-  width: 60px;
+  height: 70px;
+  border-radius: 50%;
+  width: 70px;
   margin-left: 10px;
 }
 .note .note-title {
   display: flex;
+  justify-content: space-between;
+}
+.note .note-title img {
+  margin-left: 1em;
 }
 .note hr {
   border: 5px dotted gray;
