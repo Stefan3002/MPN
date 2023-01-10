@@ -14,6 +14,8 @@ import {setLanguages} from "./store/utils/utils-actions";
 import HomePage from "./components/home-page/home-page";
 import {getUser} from "./store/user/user-selectors";
 import FeedPage from "./components/feed-page/feed-page";
+import PublicProfilePage from "./components/public-profile-page/public-profile-page";
+import FollowingPage from "./components/following-page/following-page";
 
 function App() {
     const navigationExtended = useSelector(getNavigationExtended)
@@ -46,6 +48,8 @@ function App() {
             <Route path='/notebook' element={<NotebookPage />} />
             <Route path='/home' element={<HomePage />} />
             <Route path='/feed' element={<FeedPage />} />
+            <Route path='/publicprofile/:userUid' element={<PublicProfilePage />}/>
+            <Route path='/following' element={<FollowingPage />}/>
         </Route>
           <Route path='/auth' element={<AuthPage />} />
       </Routes>

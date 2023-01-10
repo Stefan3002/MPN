@@ -1,5 +1,17 @@
-.profile-page
+.profile-page-wrapper
   text-align: center
   width: 100%
-  .profile-img
-    border-radius: 50%
+  .profile-page
+    .profile-img
+      border-radius: 50%
+    animation-name: slide-left
+    animation-duration: .3s
+  .preferred-lang
+    font-weight: bold
+  .preferred-lang-icon
+    width: 80px
+@keyframes slide-left
+  from
+    transform: translateX(100%)
+  to
+    transform: translateX(0)

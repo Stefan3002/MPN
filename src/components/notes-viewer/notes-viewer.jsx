@@ -1,11 +1,11 @@
 import './notes-viewer.css'
 import Note from "../note/note";
-const NotesViewer = ({notes}) => {
+const NotesViewer = ({noShareable, notes}) => {
     return (
         <div className='notes-viewer'>
-            {notes.map((note) => {
-                return <Note noteData={note} />
-            })}
+            {notes ? notes.map((note) => {
+                return <Note noShareable={noShareable} noteData={note} />
+            }) : null}
         </div>
     )
 }

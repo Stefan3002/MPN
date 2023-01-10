@@ -2,6 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  animation-name: slide-left;
+  animation-duration: 0.3s;
 }
 .home-page .recents {
   overflow: auto;
@@ -27,6 +29,15 @@
 .home-page .snapshot .profile-img {
   border-radius: 50%;
   width: 110px;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 /*# sourceMappingURL=home-page.css.map */

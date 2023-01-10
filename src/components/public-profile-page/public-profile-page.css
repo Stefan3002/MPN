@@ -1,0 +1,28 @@
+.public-profile-page-wrapper {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  animation-duration: 0.2s;
+  animation-name: slide-left;
+}
+.public-profile-page-wrapper .public-profile-page h1 {
+  font-size: 3em;
+}
+.public-profile-page-wrapper .public-profile-page .icon {
+  border-radius: 50%;
+}
+.public-profile-page-wrapper .public-profile-page .subtitle {
+  font-size: 2em;
+}
+.public-profile-page-wrapper .public-profile-page .following-icon {
+  width: 80px;
+}
+.public-profile-page-wrapper .header {
+  background-size: cover;
+  width: 100%;
+  height: 100px;
+  background-repeat: no-repeat;
+}
+
+/*# sourceMappingURL=public-profile-page.css.map */

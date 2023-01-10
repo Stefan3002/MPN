@@ -1,9 +1,28 @@
-.profile-page {
+.profile-page-wrapper {
   text-align: center;
   width: 100%;
 }
-.profile-page .profile-img {
+.profile-page-wrapper .profile-page {
+  animation-name: slide-left;
+  animation-duration: 0.3s;
+}
+.profile-page-wrapper .profile-page .profile-img {
   border-radius: 50%;
+}
+.profile-page-wrapper .preferred-lang {
+  font-weight: bold;
+}
+.profile-page-wrapper .preferred-lang-icon {
+  width: 80px;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 /*# sourceMappingURL=profile-page.css.map */

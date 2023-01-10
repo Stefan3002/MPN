@@ -1,9 +1,22 @@
+.feed-page {
+  animation-name: slide-left;
+  animation-duration: 0.3s;
+}
 .feed-page .feed-viewer {
   display: flex;
   flex-wrap: wrap;
   max-height: 100%;
   overflow: auto;
   justify-content: left;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 /*# sourceMappingURL=feed-page.css.map */

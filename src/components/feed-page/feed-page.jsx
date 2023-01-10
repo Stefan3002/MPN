@@ -17,14 +17,13 @@ const FeedPage = () => {
             setFeed(await computeFeedBack(userData))
         })()
     }, [userData])
-
     return (
         <div className='feed-page'>
             <h1>Your programming feed</h1>
             <div className="feed-viewer">
                 {feed.map((feedItem) => {
                     const {userNote, userDisplayName, userImg} = feedItem
-                    return <Note noShareable={true} userImg={userImg} noteData={userNote} />
+                    return <Note uid={feedItem.uid} noShareable={true} userImg={userImg} noteData={userNote} />
                 })}
             </div>
             {noteExtended ? <div><Blur /><NoteExtension noCRUD={true} note={noteExtendedData} /></div> : null}

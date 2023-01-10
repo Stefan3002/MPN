@@ -16,6 +16,16 @@
   display: flex;
   justify-content: center;
 }
+.add-note-page .icon {
+  padding: 0.2em;
+  transition: all 0.2s;
+}
+.add-note-page .icon:hover {
+  background: white;
+  border-radius: 10px;
+  transition: all 0.2s;
+  transform: scale(1.1);
+}
 
 @keyframes pop-up {
   from {

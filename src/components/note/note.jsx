@@ -5,7 +5,9 @@ import {getLanguages} from "../../store/utils/utils-selectors";
 import {getLangData} from "../../utils/calculations";
 import {setNoteExtended, setNoteExtendedData} from "../../store/notes/notes-actions";
 import ShareSVG from '../../utils/images/ShareSVG.svg'
-const Note = ({noShareable, userImg, noteData}) => {
+import {Link} from "react-router-dom";
+const Note = ({noShareable, userImg, noteData, uid}) => {
+
     const {title, content, selectedLang, createdAt, shareable} = noteData
     // console.log(new Date(createdAt.seconds, createdAt.nanoseconds).toDateString(), createdAt)
     const languages = useSelector(getLanguages)
@@ -24,7 +26,7 @@ const Note = ({noShareable, userImg, noteData}) => {
         <div className='note' onClick={extendNote}>
             <div className="note-title">
                 <p className="note-title">{title}</p>
-                {userImg ? <img className='icon' src={userImg} alt=""/> : null}
+                {userImg ? <Link to={`/publicprofile/${uid}`}><img className='icon' src={userImg} alt=""/></Link> : null}
                 {!noShareable && shareable ? <img className='icon' src={ShareSVG} alt=""/> : null}
                 {selectedLangData ? <img className='icon' src={selectedLangData.icon} alt=""/> : null}
             </div>

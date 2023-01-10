@@ -10,6 +10,7 @@ import {setAddNotesExtended} from "../../store/notes/notes-actions";
 import {getAddNotesExtended, getNoteExtended, getNoteExtendedData} from "../../store/notes/notes-selectors";
 import NotesViewer from "../notes-viewer/notes-viewer";
 import NoteExtension from "../note-extension/note-extension";
+import extendNavigation from "../../store/navigation/navigation-actions";
 const NotebookPage = () => {
     const user = useSelector(getUser)
     const userData = useSelector(getUserData)
@@ -25,6 +26,9 @@ const NotebookPage = () => {
     const addNote = () => {
         dispatch(setAddNotesExtended(true))
     }
+    // useEffect(() => {
+    //     dispatch(extendNavigation(false))
+    // }, [])
 
     return (
         <div className='notebook-page'>

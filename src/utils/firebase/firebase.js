@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-import {signInWithPopup, getAuth, GoogleAuthProvider, onAuthStateChanged} from 'firebase/auth'
+import {signInWithPopup, getAuth, GoogleAuthProvider, onAuthStateChanged, signOut} from 'firebase/auth'
 import {doc, setDoc, getDoc, getFirestore, collection, getDocs} from 'firebase/firestore'
 
 // Your web app's Firebase configuration
@@ -37,6 +37,7 @@ export const createUserDocBack = async (userData) => {
             photoURL,
             notes: [],
             following: [],
+            uid,
             createdAt
         })
         return userSnap
@@ -120,14 +121,15 @@ export const computeFeedBack = async (currentUser) => {
         usersSnap.forEach((userSnap) => {
             const userData = userSnap.data()
             const {email} = userSnap.data()
-            if (currentUser.following.filter((following) => following === email).length === 1) {
-                const {notes, displayName, photoURL} = userData
+            if (currentUser.following.filter((following) => following.email === email).length === 1) {
+                const {notes, displayName, photoURL, uid} = userData
                 notes.forEach((note) => {
                     if (note.shareable)
                         feed.push({
                             userDisplayName: displayName,
                             userNote: note,
-                            userImg: photoURL
+                            userImg: photoURL,
+                            uid
                         })
                 })
             }
@@ -136,6 +138,58 @@ export const computeFeedBack = async (currentUser) => {
     }
     else
         return []
+}
+
+export const getUserPublicDataBack = async (userUid) => {
+    if(!userUid)
+        return {
+        name: 'User not found!'
+        }
+    const docRef = doc(db, 'users', userUid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return {
+        name: "User not found!"
+        }
+    else{
+        const userData = docSnap.data()
+        const {displayName, photoURL, notes} = userData
+        let publicNotes = notes.filter((note) => note.shareable)
+        if(publicNotes.length === 0)
+            publicNotes = []
+        console.log(publicNotes)
+        return {
+            name: displayName,
+            photoURL,
+            notes: publicNotes
+        }
+    }
+}
+
+export const getFollowingDataBack = (following) => {
+    const followingList = []
+    following.forEach(async (followingPerson) => {
+        const {uid} = followingPerson
+        const docRef = doc(db, 'users', uid)
+        const docSnap = await getDoc(docRef)
+        if(!docSnap.exists())
+            return undefined
+        else{
+            const followedUser = docSnap.data()
+            console.log(followedUser)
+            const {displayName, photoURL} = followedUser
+            followingList.push({
+                displayName,
+                photoURL
+            })
+        }
+    })
+    console.log(following, followingList)
+    return followingList
+}
+
+export const signOutBack = async () => {
+    await signOut(auth)
 }
 
 export const onAuthStateChangedListener = (cb) => onAuthStateChanged(auth, cb)

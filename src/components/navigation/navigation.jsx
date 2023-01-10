@@ -8,6 +8,8 @@ import {getUser} from "../../store/user/user-selectors";
 import AuthSVG from '../../utils/images/AuthSVG.svg'
 import ArrowsSVG from '../../utils/images/ArrowsSVG.svg'
 import maleAvatarSVG from '../../utils/images/MaleAvatar.svg'
+import LeaveSVG from '../../utils/images/LeaveSVG.svg'
+import FollowingSVG from '../../utils/images/EyeEVG.svg'
 import {Outlet} from "react-router";
 
 const Navigation = () => {
@@ -31,10 +33,12 @@ const Navigation = () => {
                         <img className='navigation-icon' src={HomeSVG} alt=""/>
                         <img className='navigation-icon' src={NotebookSVG} alt=""/>
                         <img className='navigation-icon' src={ArrowsSVG} alt=""/>
+                        <img className='navigation-icon' src={FollowingSVG} alt=""/>
+                        <img className='navigation-icon' src={LeaveSVG} alt=""/>
                     </div>
                 </div>
                 <div className="bottom-content">
-                    <p>About</p>
+                    {/*<p>About</p>*/}
                 </div>
             </div>
             <Outlet />

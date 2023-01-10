@@ -3,7 +3,7 @@
   background-color: rgba(211, 211, 211, 0.5)
   padding: 2em
   height: calc(100vh - 1em)
-  width: 15vw
+  width: 100%
   display: flex
   flex-direction: column
   justify-content: space-between
@@ -16,19 +16,50 @@
     padding: .5em
     p
       text-align: center
-
     &:hover
       transform: scale(1.1)
       background: whitesmoke
       border-radius: 10px
       transition: all .2s
   .navigation-icons
+    margin: 2em 0 0 0
+    text-align: center
     display: flex
-    flex-direction: column
+    flex-wrap: wrap
+    justify-content: center
+    align-items: center
     .navigation-icon
       margin: 1em 0
-      width: 80px
+      width: 100%
+      max-width: 240px
       margin-right: 1.5em
+    .navigation-option
+      display: flex
+      flex-direction: column
+      line-height: 1px
+      p
+        color: black
+        text-decoration: none
+        font-size: 2em
+  .header
+    display: flex
+    flex-direction: column
+    align-items: center
+    line-height: 50px
+    h1
+      margin: .5em 0 0 0
+      font-size: 4em
+    p
+      font-size: 1.5em
+    .close-icon
+      width: 80px
+      transition: all .2s
+      padding: .5em
+      &:hover
+        background: whitesmoke
+        border-radius: 10px
+        transform: scale(1.1)
+        transition: all .2s
 
 @keyframes slide-right
   from
