@@ -1,15 +1,20 @@
 .note
+  //box-shadow: -4px 10px 20px black
+  display: flex
+  flex-direction: column
+  justify-content: space-between
   min-width: 280px
   width: fit-content
+  //max-width: 300px
   height: 350px
   background: whitesmoke
-  padding: 1em
   margin: 1em
-  border-radius: 10px
+  border-radius: 5px 20px 10px 20px
   //border: 1px solid black
   transition: all .2s
   &:hover
     transform: scale(1.1)
+    box-shadow: 10px 10px 20px black
     transition: all .2s
   .note-title
     font-weight: bold
@@ -20,11 +25,35 @@
     border-radius: 50%
     width: 70px
     margin-left: 10px
-  .note-title
-    display: flex
-    justify-content: space-between
-    img
-      margin-left: 1em
+  .top-section
+    padding: 1em
+    .note-title
+      display: flex
+      justify-content: space-between
+      img
+        margin-left: 1em
+
   hr
     border: 5px dotted gray
     border-bottom: 0
+  .bottom-section
+    color: white
+    z-index: 10
+    border-radius: 0 20px 0 20px
+    background: rgba(128, 128, 128, 0.6)
+    //box-shadow: -4px 4px 8px black
+    padding: 0 1em 0 0
+    display: flex
+    justify-content: space-between
+    .heart-icon
+      width: 30px
+      margin-right: .5em
+      padding: .4em .7em .4em .7em
+      transition: all .2s
+      border-radius: 0 0 0 20px
+      &:hover
+        transition: all .2s
+        background: white
+    .hearts-stats
+      display: flex
+      justify-content: space-between

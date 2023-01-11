@@ -14,6 +14,8 @@ export const amIFollowing = (following, target) => {
     return following.filter((followingPerson) => followingPerson.email === target).length === 1
 }
 
-export const getLangData = (languages, selectedLang) => (languages.filter((lang) => lang.name === selectedLang))[0]
+export function getLangData (languages, selectedLang) {
+    return (languages.filter((lang) => lang.name === selectedLang))[0]
+}
 
 

@@ -5,6 +5,7 @@ import { initializeApp } from "firebase/app";
 
 import {signInWithPopup, getAuth, GoogleAuthProvider, onAuthStateChanged, signOut} from 'firebase/auth'
 import {doc, setDoc, getDoc, getFirestore, collection, getDocs} from 'firebase/firestore'
+import {useState} from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -36,7 +37,10 @@ export const createUserDocBack = async (userData) => {
             email,
             photoURL,
             notes: [],
-            following: [],
+            following: [{
+                uid: '5KCTw3lxS0abgFA1uZog0lq30WJ3',
+                email: 'secrieru2302@gmail.com'
+            }],
             uid,
             createdAt
         })
@@ -48,8 +52,10 @@ export const getUserDataBack = async (uid) => {
     const docSnap = await getDoc(docRef)
     if(!docSnap.exists())
         return undefined
-    else
+    else {
+        console.log(docSnap.data())
         return docSnap.data()
+    }
 }
 
 export const addNoteBack = async (title, content, selectedLang, shareable, uid) => {
@@ -65,6 +71,7 @@ export const addNoteBack = async (title, content, selectedLang, shareable, uid) 
             content,
             selectedLang,
             shareable,
+            hearts: 0,
             createdAt
         })
         await setDoc(docRef, {
@@ -121,6 +128,7 @@ export const computeFeedBack = async (currentUser) => {
         usersSnap.forEach((userSnap) => {
             const userData = userSnap.data()
             const {email} = userSnap.data()
+            console.log(currentUser)
             if (currentUser.following.filter((following) => following.email === email).length === 1) {
                 const {notes, displayName, photoURL, uid} = userData
                 notes.forEach((note) => {
@@ -166,27 +174,55 @@ export const getUserPublicDataBack = async (userUid) => {
     }
 }
 
-export const getFollowingDataBack = (following) => {
+export const getFollowingDataBack = async (following) => {
+
     const followingList = []
-    following.forEach(async (followingPerson) => {
+    for (const followingPerson of following) {
         const {uid} = followingPerson
         const docRef = doc(db, 'users', uid)
         const docSnap = await getDoc(docRef)
-        if(!docSnap.exists())
+        if (!docSnap.exists())
             return undefined
-        else{
+        else {
             const followedUser = docSnap.data()
-            console.log(followedUser)
-            const {displayName, photoURL} = followedUser
+            const {displayName, photoURL, uid} = followedUser
             followingList.push({
+                uid,
                 displayName,
                 photoURL
             })
         }
-    })
-    console.log(following, followingList)
+    }
     return followingList
 }
+
+export const increaseHeartsBack = async (uid, noteData) => {
+    const docRef = doc(db, 'users', uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const notes = docSnap.data().notes
+        notes.forEach((note, idx) => {
+            if (note.title === noteData.title)
+                notes[idx].hearts++
+                })
+        await setDoc(docRef, {
+            ...docSnap.data(),
+            notes
+        })
+        const updatedDocSnap = await getDoc(docRef)
+        console.log(updatedDocSnap.data().notes)
+        let updatedNote = undefined
+        updatedDocSnap.data().notes.forEach((note) => {if(note.title === noteData.title) updatedNote = note})
+        return updatedNote
+    }
+}
+
+export const transformDateBack = (createdAt) => {
+    return createdAt.toDate()
+}
+
 
 export const signOutBack = async () => {
     await signOut(auth)

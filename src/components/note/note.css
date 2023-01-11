@@ -1,15 +1,18 @@
 .note {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-width: 280px;
   width: fit-content;
   height: 350px;
   background: whitesmoke;
-  padding: 1em;
   margin: 1em;
-  border-radius: 10px;
+  border-radius: 5px 20px 10px 20px;
   transition: all 0.2s;
 }
 .note:hover {
   transform: scale(1.1);
+  box-shadow: 10px 10px 20px black;
   transition: all 0.2s;
 }
 .note .note-title {
@@ -23,16 +26,43 @@
   width: 70px;
   margin-left: 10px;
 }
-.note .note-title {
+.note .top-section {
+  padding: 1em;
+}
+.note .top-section .note-title {
   display: flex;
   justify-content: space-between;
 }
-.note .note-title img {
+.note .top-section .note-title img {
   margin-left: 1em;
 }
 .note hr {
   border: 5px dotted gray;
   border-bottom: 0;
+}
+.note .bottom-section {
+  color: white;
+  z-index: 10;
+  border-radius: 0 20px 0 20px;
+  background: rgba(128, 128, 128, 0.6);
+  padding: 0 1em 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.note .bottom-section .heart-icon {
+  width: 30px;
+  margin-right: 0.5em;
+  padding: 0.4em 0.7em 0.4em 0.7em;
+  transition: all 0.2s;
+  border-radius: 0 0 0 20px;
+}
+.note .bottom-section .heart-icon:hover {
+  transition: all 0.2s;
+  background: white;
+}
+.note .bottom-section .hearts-stats {
+  display: flex;
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=note.css.map */

@@ -3,20 +3,24 @@ import {useSelector} from "react-redux";
 import {getUserData} from "../../store/user/user-selectors";
 import {useEffect, useState} from "react";
 import {getFollowingDataBack} from "../../utils/firebase/firebase";
+import FollowingViewer from "../following-viewer/following-viewer";
 const FollowingPage = () => {
     const userData = useSelector(getUserData)
     const [following, setFollowing] = useState([])
 
     useEffect(() => {
-        if(userData)
-            setFollowing(getFollowingDataBack(userData.following))
+        (async () => {
+            if(userData) {
+                const data = await getFollowingDataBack(userData.following)
+                console.log('aaaaaaaaaa', data, userData.following)
+                setFollowing(data)
+            }
+        })()
     }, [userData])
-    console.log(following)
     return (
-        <div className='following-page'>
-            {following.map((followingPerson) => {
-                return <p>{followingPerson.displayName}</p>
-            })}
+        <div className="following-page-wrapper">
+            <h1>Programmers you follow:</h1>
+            {following ? <FollowingViewer following={following} /> : null}
         </div>
     )
 }

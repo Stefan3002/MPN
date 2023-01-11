@@ -35,7 +35,7 @@ const NotebookPage = () => {
             <h1>Your Notebook</h1>
             <img onMouseDown={addNote} className='add-button icon' src={AddSVG} alt=""/>
             {addPage ? <div> <Blur /> <AddNotePage /></div> : null}
-            {userData ? <NotesViewer notes={userData.notes} /> : null}
+            {userData ? <NotesViewer uid={userData.uid} notes={userData.notes} /> : null}
             {noteExtended ? <div><Blur /><NoteExtension noCRUD={false} note={noteExtendedData} /></div> : null}
         </div>
     )
