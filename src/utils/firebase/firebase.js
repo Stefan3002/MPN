@@ -219,6 +219,48 @@ export const increaseHeartsBack = async (uid, noteData) => {
     }
 }
 
+export const addFollowingBack = async (currentUserData, userUid) => {
+    const docRef = doc(db, 'users', currentUserData.uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const {following} = docSnap.data()
+
+        let found = false
+        for(let followingPerson of following) {
+            console.log(followingPerson, {uid: userUid})
+            if (followingPerson.toString() === {uid: userUid}.toString()) {
+                found = true
+                break
+            }
+        }
+        if(!found)
+            await setDoc(docRef, {
+                ...docSnap.data(),
+                following: [...following, {uid: userUid}]
+            })
+    }
+}
+
+export const removeFollowingBack = async (currentUserData, userUid) => {
+    const docRef = doc(db, 'users', currentUserData.uid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const {following} = docSnap.data()
+
+        const newFollowing = following.filter(followingPerson => followingPerson.toString() !== {uid: userUid}.toString())
+        await setDoc(docRef, {
+            ...docSnap.data(),
+            following: newFollowing
+        })
+    }
+}
+
+
+
 export const transformDateBack = (createdAt) => {
     return createdAt.toDate()
 }

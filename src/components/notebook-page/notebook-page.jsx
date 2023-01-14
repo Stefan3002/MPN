@@ -26,16 +26,34 @@ const NotebookPage = () => {
     const addNote = () => {
         dispatch(setAddNotesExtended(true))
     }
+
+    const [filteredNotes, setFilteredNotes] = useState([])
+
+    useEffect(() => {
+        if(userData)
+            setFilteredNotes(userData.notes)
+    }, [userData])
+
     // useEffect(() => {
     //     dispatch(extendNavigation(false))
     // }, [])
 
+    const filterNotes = (event) => {
+        if(event){
+            setFilteredNotes(userData.notes)
+            const target = event.target.value
+            setFilteredNotes(userData.notes.filter(note => {
+                return note.title.includes(target) || note.content.includes(target)
+            }))
+        }
+    }
     return (
         <div className='notebook-page'>
             <h1>Your Notebook</h1>
+            <input onChange={filterNotes} type="text" placeholder='Search note.'/>
             <img onMouseDown={addNote} className='add-button icon' src={AddSVG} alt=""/>
             {addPage ? <div> <Blur /> <AddNotePage /></div> : null}
-            {userData ? <NotesViewer uid={userData.uid} notes={userData.notes} /> : null}
+            {userData ? <NotesViewer uid={userData.uid} notes={filteredNotes} /> : null}
             {noteExtended ? <div><Blur /><NoteExtension noCRUD={false} note={noteExtendedData} /></div> : null}
         </div>
     )

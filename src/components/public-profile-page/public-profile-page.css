@@ -17,6 +17,7 @@
 }
 .public-profile-page-wrapper .public-profile-page .following-icon {
   width: 80px;
+  margin-right: 1em;
 }
 .public-profile-page-wrapper .header {
   background-size: cover;

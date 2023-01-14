@@ -1,10 +1,11 @@
 import './public-profile-page.css'
 import {useParams} from "react-router";
 import {useEffect, useState} from "react";
-import {getUserPublicDataBack} from "../../utils/firebase/firebase";
+import {addFollowingBack, getUserPublicDataBack, removeFollowingBack} from "../../utils/firebase/firebase";
 import {eventWrapper} from "@testing-library/user-event/dist/utils";
 import NotesViewer from "../notes-viewer/notes-viewer";
 import EyeSVG from '../../utils/images/EyeEVG.svg'
+import followSVG from '../../utils/images/AddSVG.svg'
 import {amIFollowing} from "../../utils/calculations";
 import {useSelector} from "react-redux";
 import {getUserData} from "../../store/user/user-selectors";
@@ -21,9 +22,19 @@ const PublicProfilePage = () => {
     }, [userUid])
 
     useEffect(() => {
-        if(currentUserData)
+        if(currentUserData && userData)
             setFollowing(amIFollowing(currentUserData.following, userData.email))
     },[currentUserData, userData])
+
+    const addFollowingFront = async () => {
+        await addFollowingBack(currentUserData, userUid)
+        setFollowing(true)
+    }
+
+    const removeFollowingFront = async () => {
+        await removeFollowingBack(currentUserData, userUid)
+        setFollowing(false)
+    }
 
     return (
         <div className="public-profile-page-wrapper">
@@ -31,7 +42,7 @@ const PublicProfilePage = () => {
                 <div className="header" >
                     <h1>{userData.name}</h1>
                 </div>
-                {following ? <img className='following-icon' src={EyeSVG} alt=""/> : null}
+                {following ? <img onClick={removeFollowingFront} className='following-icon' src={EyeSVG} alt=""/> : <img onClick={addFollowingFront} className='following-icon' src={followSVG} alt=""/>}
                 <img className='icon' src={userData.photoURL} alt=""/>
                 <p className='subtitle'>Public notes:</p>
                 <NotesViewer noShareable={true} notes={userData.notes} />
