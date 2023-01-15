@@ -4,7 +4,7 @@ import NavigationExtension from "./components/navigation-extension/navigation-ex
 import Navigation from "./components/navigation/navigation";
 import {useDispatch, useSelector} from "react-redux";
 import {getNavigationExtended} from "./store/navigation/navigation-selectors";
-import AuthPage from "./components/auth-page/auth-page";
+import AuthPage from "./components/landing-page-components/auth-page/auth-page";
 import {useEffect} from "react";
 import {getLanguagesBack, getUserDataBack, onAuthStateChangedListener} from "./utils/firebase/firebase";
 import {setUser, setUserData} from "./store/user/user-actions";

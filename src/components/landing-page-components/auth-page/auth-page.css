@@ -1,0 +1,31 @@
+.auth-page .high {
+  color: #D5CEA3;
+}
+.auth-page .bottom-section {
+  height: 100vh;
+}
+.auth-page .big-title {
+  margin: 0;
+  line-height: 200px;
+  font-size: 12em;
+}
+.auth-page .subtitle {
+  font-weight: normal;
+}
+.auth-page .top-section {
+  padding: 2em;
+  width: 30em;
+}
+.auth-page .top-section-wrapper {
+  display: flex;
+  justify-content: left;
+}
+
+@media screen and (max-width: 1600px) {
+  .auth-page .big-title {
+    font-size: 10em;
+    line-height: 150px;
+  }
+}
+
+/*# sourceMappingURL=auth-page.css.map */

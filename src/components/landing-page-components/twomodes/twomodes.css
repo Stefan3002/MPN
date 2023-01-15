@@ -1,0 +1,27 @@
+.twomodes {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.twomodes .left {
+  background-color: #1A120B;
+  color: whitesmoke;
+}
+.twomodes .left .left-wrapper {
+  padding: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.twomodes .left .left-wrapper img {
+  width: 50%;
+}
+.twomodes .right {
+  font-size: 3.6em;
+  margin-top: 2rem;
+  padding: 0 2rem 0 2rem;
+}
+.twomodes .right h2 {
+  margin: 0;
+}
+
+/*# sourceMappingURL=twomodes.css.map */

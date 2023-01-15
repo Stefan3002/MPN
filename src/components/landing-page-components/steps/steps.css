@@ -1,0 +1,43 @@
+.steps {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+}
+.steps .left {
+  margin: 0;
+  font-weight: bold;
+  font-size: 3.6em;
+  line-height: 110px;
+  margin-left: 2rem;
+}
+.steps .left h2 {
+  margin-top: 2rem;
+}
+.steps .right {
+  background: #1A120B;
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
+.steps .right .step {
+  line-height: 20px;
+  margin: 2em 1em 1em 1em;
+  background: linear-gradient(to bottom, #D5CEA3, #1A120B);
+  padding: 3em 1em 1em 1em;
+  border-radius: 50%;
+  width: 270px;
+  text-align: center;
+  transition: all 0.2s;
+}
+.steps .right .step:hover, .steps .right .step:focus {
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+.steps .right .step .landing-icon {
+  width: 150px;
+}
+.steps .right .step .step-title {
+  font-size: 3.6em;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=steps.css.map */

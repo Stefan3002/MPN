@@ -1,0 +1,10 @@
+.logo {
+  display: flex;
+  justify-content: center;
+}
+.logo img {
+  width: 100%;
+  max-width: 500px;
+}
+
+/*# sourceMappingURL=logo.css.map */

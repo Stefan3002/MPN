@@ -1,0 +1,38 @@
+.catch-phrase
+  color: whitesmoke
+  display: grid
+  grid-template-columns: 2fr 1fr
+  grid-template-rows: 1fr 1fr
+  grid-template-areas: 'left top' 'left right'
+  .right-top-section
+    grid-area: top
+    color: black
+    font-size: 5em
+    line-height: 80px
+    font-weight: bold
+    padding: 0 1em 0 1em
+    height: fit-content
+    p
+      margin: 0
+      margin-top: 2rem
+  .left
+    background: #1A120B
+    grid-area: left
+    .left-wrapper
+      margin-top: 2em
+      margin-left: 2em
+      width: 30em
+    h2
+      margin: 0
+      margin-bottom: 3rem
+      font-weight: bold
+      font-size: 4em
+      line-height: 70px
+  .right-bottom-section
+    background: #1A120B
+    padding: 2em
+    grid-area: right
+    display: flex
+    justify-content: center
+    .landing-icon
+      width: 55%
