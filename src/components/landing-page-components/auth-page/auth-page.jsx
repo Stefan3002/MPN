@@ -9,6 +9,7 @@ import Twomodes from "../twomodes/twomodes";
 import Logo from "../logo/logo";
 import TwomodesChoice from "../twomodes-choice/twomodes-choice";
 import Separator from "../separator/separator";
+import Footer from "../footer/footer";
 const AuthPage = () => {
 
     return (
@@ -22,11 +23,13 @@ const AuthPage = () => {
             </div>
             <div className="bottom-section">
                 <CatchPhrase />
+                <Separator height='4em' />
                 <Steps />
                 <Logo />
                 <Twomodes />
                 <Separator />
                 <TwomodesChoice />
+                <Footer />
             </div>
         </div>
     )

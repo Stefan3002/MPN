@@ -1,7 +1,7 @@
 import './separator.css'
-const Separator = () => {
+const Separator = ({height}) => {
     return (
-        <div className="separator" />
+        <div className="separator" style={{height: `${height}`}}/>
     )
 }
 export default Separator

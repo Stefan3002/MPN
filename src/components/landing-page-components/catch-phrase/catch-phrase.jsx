@@ -20,14 +20,20 @@ const CatchPhrase = () => {
             <div className="left">
                 <div className="left-wrapper">
                     <h2>Tired of taking notes on <span className="high">notepad</span>?</h2>
-                    <Button img={GoogleImg} text='Log In' onClickHandler={googleAuthFace} />
                 </div>
             </div>
+            <div className="middle">
+                <img className='landing-icon' src={NotepadSVG} alt=""/>
+            </div>
             <div className="right-top-section">
-                <p><span className="high">Forget</span> about it!</p>
+                <div className="right-top-section-wrapper">
+                    <p><span className="high">Forget</span> about it!</p>
+                </div>
             </div>
             <div className="right-bottom-section">
-                <img className='landing-icon' src={NotepadSVG} alt=""/>
+                <div className="right-bottom-wrapper">
+                    <Button bgcolor='#D5CEA3' img={GoogleImg} text='Log In' onClickHandler={googleAuthFace} />
+                </div>
             </div>
         </div>
     )

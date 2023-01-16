@@ -3,9 +3,10 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getLanguages} from "../../store/utils/utils-selectors";
 import {getLangData} from "../../utils/calculations";
-import {setNoteExtended, setNoteExtendedData} from "../../store/notes/notes-actions";
+import {setCommentData, setCommentsOpened, setNoteExtended, setNoteExtendedData} from "../../store/notes/notes-actions";
 import ShareSVG from '../../utils/images/ShareSVG.svg'
 import EmptyHeartSVG from '../../utils/images/EmptyHeartSVG.svg'
+import CommentSVG from '../../utils/images/CommentSVG.svg'
 import {Link} from "react-router-dom";
 import {increaseHeartsBack, transformDateBack} from "../../utils/firebase/firebase";
 const Note = ({noShareable, userImg, noteData, uid}) => {
@@ -37,6 +38,11 @@ const Note = ({noShareable, userImg, noteData, uid}) => {
         setHearts((await increaseHeartsBack(uid, noteData)).hearts)
     }
 
+    const openComments = () => {
+        dispatch(setCommentsOpened(true))
+        dispatch(setCommentData(noteData))
+    }
+
     return (
         <div className='note'>
             <div className="top-section" onClick={extendNote}>
@@ -53,6 +59,8 @@ const Note = ({noShareable, userImg, noteData, uid}) => {
                 <div className="hearts-stats">
                     <img className='heart-icon' onClick={increaseHeartsFront} src={EmptyHeartSVG} alt=""/>
                     <p>{hearts}</p>
+                    <img onClick={openComments} className='comment-icon' src={CommentSVG} alt=""/>
+                    <p>{noteData.comments.comments.length}</p>
                 </div>
                 <p className='date'>{date.toLocaleDateString()}</p>
             </div>

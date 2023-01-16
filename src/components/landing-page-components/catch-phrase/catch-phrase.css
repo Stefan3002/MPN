@@ -1,22 +1,37 @@
 .catch-phrase {
   color: whitesmoke;
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  grid-template-areas: "left top" "left right";
+  grid-template-areas: "left mid top" "left mid right";
 }
 .catch-phrase .right-top-section {
+  display: flex;
+  justify-content: center;
+}
+.catch-phrase .right-top-section .right-top-section-wrapper {
+  padding: 0 1em 0 1em;
   grid-area: top;
   color: black;
   font-size: 5em;
   line-height: 80px;
   font-weight: bold;
-  padding: 0 1em 0 1em;
   height: fit-content;
 }
-.catch-phrase .right-top-section p {
-  margin: 0;
-  margin-top: 2rem;
+.catch-phrase .right-top-section .right-top-section-wrapper p {
+  margin: 2rem 0;
+}
+.catch-phrase .middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-area: mid;
+  background: #1A120B;
+}
+.catch-phrase .middle img {
+  width: 50%;
+  max-width: 300px;
+  margin-top: 2em;
 }
 .catch-phrase .left {
   background: #1A120B;
@@ -25,7 +40,6 @@
 .catch-phrase .left .left-wrapper {
   margin-top: 2em;
   margin-left: 2em;
-  width: 30em;
 }
 .catch-phrase .left h2 {
   margin: 0;
@@ -36,13 +50,17 @@
 }
 .catch-phrase .right-bottom-section {
   background: #1A120B;
-  padding: 2em;
   grid-area: right;
   display: flex;
   justify-content: center;
 }
 .catch-phrase .right-bottom-section .landing-icon {
   width: 55%;
+}
+.catch-phrase .right-bottom-section .right-bottom-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=catch-phrase.css.map */

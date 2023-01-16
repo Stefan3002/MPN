@@ -16,3 +16,16 @@ export const setNoteExtendedData = (data) => {
         payload: data
     }
 }
+
+export const setCommentsOpened = (opened) => {
+    return {
+        type: 'SET_COMMENTS_OPENED',
+        payload: opened
+    }
+}
+export const setCommentData = (data) => {
+    return {
+        type: 'SET_NOTE_DATA',
+        payload: data
+    }
+}

@@ -38,8 +38,7 @@ export const createUserDocBack = async (userData) => {
             photoURL,
             notes: [],
             following: [{
-                uid: '5KCTw3lxS0abgFA1uZog0lq30WJ3',
-                email: 'secrieru2302@gmail.com'
+                uid: 'Kzo7kJosyzQB97nP3w8PrkkDPLh1',
             }],
             uid,
             createdAt
@@ -72,7 +71,9 @@ export const addNoteBack = async (title, content, selectedLang, shareable, uid) 
             selectedLang,
             shareable,
             hearts: 0,
-            createdAt
+            createdAt,
+            uid,
+            comments: {comments:[]}
         })
         await setDoc(docRef, {
             ...docSnap.data(),
@@ -177,6 +178,7 @@ export const getUserPublicDataBack = async (userUid) => {
 export const getFollowingDataBack = async (following) => {
 
     const followingList = []
+
     for (const followingPerson of following) {
         const {uid} = followingPerson
         const docRef = doc(db, 'users', uid)
@@ -184,6 +186,8 @@ export const getFollowingDataBack = async (following) => {
         if (!docSnap.exists())
             return undefined
         else {
+            console.log('back', followingList)
+
             const followedUser = docSnap.data()
             const {displayName, photoURL, uid} = followedUser
             followingList.push({
@@ -215,6 +219,7 @@ export const increaseHeartsBack = async (uid, noteData) => {
         console.log(updatedDocSnap.data().notes)
         let updatedNote = undefined
         updatedDocSnap.data().notes.forEach((note) => {if(note.title === noteData.title) updatedNote = note})
+        console.log('a')
         return updatedNote
     }
 }
@@ -259,6 +264,36 @@ export const removeFollowingBack = async (currentUserData, userUid) => {
     }
 }
 
+export const addCommentBack = async (comment, targetUid, noteTitle, currentUid, photoURL, displayName) => {
+    const docRef = doc(db, 'users', targetUid)
+    const docSnap = await getDoc(docRef)
+    if(!docSnap.exists())
+        return undefined
+    else{
+        const data = docSnap.data()
+        const notes = data.notes
+        const targetNote = notes.filter((note) => note.title === noteTitle)[0]
+        if(!targetNote.comments) {
+            targetNote.comments = {}
+            targetNote.comments.comments = []
+        }
+        const newComment = {
+            uid: currentUid,
+            comment,
+            photoURL,
+            displayName
+        }
+        targetNote.comments.comments.push(newComment)
+        console.log(targetNote)
+        const newNotes = notes.filter((note) => note.title !== noteTitle)
+        newNotes.push(targetNote)
+        await setDoc(docRef, {
+            ...data,
+            notes: newNotes
+        })
+        return targetNote
+    }
+}
 
 
 export const transformDateBack = (createdAt) => {

@@ -1,0 +1,36 @@
+.comments {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #D5CEA3;
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1em 2em;
+  height: 98vh;
+  animation-name: slide-left;
+  animation-duration: 0.2s;
+  z-index: 10;
+}
+.comments .top-section {
+  display: flex;
+  justify-content: center;
+}
+.comments .top-section .close-icon {
+  width: 80px;
+  margin-right: 0.5em;
+}
+.comments h2 {
+  font-size: 2em;
+}
+.comments .bottom-section .arrow-icon {
+  width: 50px;
+  margin-left: 0.5em;
+  transition: all 0.2s;
+}
+.comments .bottom-section .arrow-icon:hover {
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+/*# sourceMappingURL=comments.css.map */

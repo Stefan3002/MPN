@@ -1,0 +1,22 @@
+.comment {
+  background: whitesmoke;
+  padding: 0.5em 1em;
+  margin: 0.5em 0;
+  line-height: 10px;
+  border-radius: 10px;
+}
+.comment .name {
+  font-weight: bold;
+  color: black;
+  font-size: 1.5em;
+  margin-left: 0.5em;
+}
+.comment .user-info {
+  display: flex;
+  align-items: center;
+}
+.comment .user-info .photo {
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=comment.css.map */

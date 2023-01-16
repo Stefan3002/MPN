@@ -9,6 +9,10 @@ import followSVG from '../../utils/images/AddSVG.svg'
 import {amIFollowing} from "../../utils/calculations";
 import {useSelector} from "react-redux";
 import {getUserData} from "../../store/user/user-selectors";
+import Blur from "../blur/blur";
+import NoteExtension from "../note-extension/note-extension";
+import Comments from "../comments/comments";
+import {getCommentNote, getCommentsOpened} from "../../store/notes/notes-selectors";
 const PublicProfilePage = () => {
 
     const {userUid} = useParams()
@@ -35,6 +39,8 @@ const PublicProfilePage = () => {
         await removeFollowingBack(currentUserData, userUid)
         setFollowing(false)
     }
+    const commentsOpened = useSelector(getCommentsOpened)
+    const noteData = useSelector(getCommentNote)
 
     return (
         <div className="public-profile-page-wrapper">
@@ -47,6 +53,8 @@ const PublicProfilePage = () => {
                 <p className='subtitle'>Public notes:</p>
                 <NotesViewer noShareable={true} notes={userData.notes} />
             </div> : null}
+            {commentsOpened ? <div> <Blur /> <NoteExtension noCRUD={true} note={noteData} /> <Comments noteData={noteData} /></div> : null}
+
         </div>
     )
 }

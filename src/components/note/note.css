@@ -44,14 +44,26 @@
   color: white;
   z-index: 10;
   border-radius: 0 20px 0 20px;
-  background: rgba(128, 128, 128, 0.6);
+  background: #D5CEA3;
+  z-index: 0;
   padding: 0 1em 0 0;
   display: flex;
   justify-content: space-between;
 }
+.note .bottom-section .comment-icon {
+  width: 35px;
+  margin-left: 1em;
+  padding: 0.4em 0.6em;
+  margin-right: 0.5em;
+  transition: all 0.2s;
+}
+.note .bottom-section .comment-icon:hover {
+  transition: all 0.2s;
+  background: white;
+}
 .note .bottom-section .heart-icon {
   width: 30px;
-  margin-right: 0.5em;
+  margin-right: 0.1em;
   padding: 0.4em 0.7em 0.4em 0.7em;
   transition: all 0.2s;
   border-radius: 0 0 0 20px;

@@ -7,10 +7,16 @@ import {useNavigate} from "react-router";
 import AddNotePage from "../add-note-page/add-note-page";
 import Blur from "../blur/blur";
 import {setAddNotesExtended} from "../../store/notes/notes-actions";
-import {getAddNotesExtended, getNoteExtended, getNoteExtendedData} from "../../store/notes/notes-selectors";
+import {
+    getAddNotesExtended, getCommentNote,
+    getCommentsOpened,
+    getNoteExtended,
+    getNoteExtendedData
+} from "../../store/notes/notes-selectors";
 import NotesViewer from "../notes-viewer/notes-viewer";
 import NoteExtension from "../note-extension/note-extension";
 import extendNavigation from "../../store/navigation/navigation-actions";
+import Comments from "../comments/comments";
 const NotebookPage = () => {
     const user = useSelector(getUser)
     const userData = useSelector(getUserData)
@@ -23,6 +29,8 @@ const NotebookPage = () => {
     const addPage = useSelector(getAddNotesExtended)
     const noteExtended = useSelector(getNoteExtended)
     const noteExtendedData = useSelector(getNoteExtendedData)
+    const commentsOpened = useSelector(getCommentsOpened)
+    const noteData = useSelector(getCommentNote)
     const addNote = () => {
         dispatch(setAddNotesExtended(true))
     }
@@ -55,6 +63,7 @@ const NotebookPage = () => {
             {addPage ? <div> <Blur /> <AddNotePage /></div> : null}
             {userData ? <NotesViewer uid={userData.uid} notes={filteredNotes} /> : null}
             {noteExtended ? <div><Blur /><NoteExtension noCRUD={false} note={noteExtendedData} /></div> : null}
+            {commentsOpened ? <div> <Blur /> <NoteExtension noCRUD={true} note={noteData} /> <Comments noteData={noteData} /></div> : null}
         </div>
     )
 }
