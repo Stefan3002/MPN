@@ -1,18 +1,38 @@
 import './catch-phrase.css'
 import NotepadSVG from '../../../utils/images/landing-page-images/NoteSVG.svg'
-import Notepad2SVG from '../../../utils/images/landing-page-images/NotepadSVG.svg'
-import Steps from "../steps/steps";
 import Button from "../../button/button";
 import {useNavigate} from "react-router";
-import {createUserDocBack, googleAuthBack} from "../../../utils/firebase/firebase";
+import {googleAuthBack} from "../../../utils/firebase/firebase";
 import GoogleImg from '../../../utils/images/Google.svg'
+import {useDispatch} from "react-redux";
+import extendNavigation from "../../../store/navigation/navigation-actions";
+import {setError, setErrorMessage} from "../../../store/error/error-actions";
+import {setLoading} from "../../../store/utils/utils-actions";
 const CatchPhrase = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const googleAuthFace = async () => {
+
         const userData = await googleAuthBack()
-        await createUserDocBack(userData)
-        navigate(-1)
+        try{
+            dispatch(setLoading(true))
+            const response = await fetch(`${process.env.REACT_APP_BACKURL}/auth/register`, {
+                method: 'POST',
+                body: new URLSearchParams({
+                    'userData': JSON.stringify(userData)
+                })
+            })
+            dispatch(setLoading(false))
+            const responseData = await response.json()
+            if(!response.ok)
+                throw new Error(responseData.errorMessage)
+            dispatch(extendNavigation(false))
+            navigate('/profile')
+        }catch (err){
+            dispatch(setError(true))
+            dispatch(setErrorMessage(err.message))
+        }
     }
 
     return (

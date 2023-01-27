@@ -1,7 +1,8 @@
 const INITIAL_VALUE = {
     languages : [],
     selectedLang : null,
-    shareable : false
+    shareable : false,
+    loading: false
 }
 
 export const utilsReducer = (state = INITIAL_VALUE, action) => {
@@ -21,6 +22,11 @@ export const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 shareable: payload
+            }
+        case 'SET_LOADING':
+            return {
+                ...state,
+                loading: payload
             }
         default:
             return state

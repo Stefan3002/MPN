@@ -42,29 +42,33 @@ const Note = ({noShareable, userImg, noteData, uid}) => {
         dispatch(setCommentsOpened(true))
         dispatch(setCommentData(noteData))
     }
-
-    return (
-        <div className='note'>
-            <div className="top-section" onClick={extendNote}>
-                <div className="note-title">
-                    <p className="note-title">{title}</p>
-                    {userImg ? <Link to={`/publicprofile/${uid}`}><img className='icon' src={userImg} alt={noteData.displayName}/></Link> : null}
-                    {!noShareable && shareable ? <img className='icon' src={ShareSVG} alt=""/> : null}
-                    {selectedLangData ? <img className='icon' src={selectedLangData.icon} alt=""/> : null}
+    if(!noteData)
+        return (
+            <h1>No notes!</h1>
+        )
+    else
+        return (
+            <div className='note'>
+                <div className="top-section" onClick={extendNote}>
+                    <div className="note-title">
+                        <p className="note-title">{title}</p>
+                        {userImg ? <Link to={`/publicprofile/${uid}`}><img className='icon' src={userImg} alt={noteData.displayName}/></Link> : null}
+                        {!noShareable && shareable ? <img className='icon' src={ShareSVG} alt=""/> : null}
+                        {selectedLangData ? <img className='icon' src={selectedLangData.icon} alt=""/> : null}
+                    </div>
+                    <hr/>
+                    <span className="content"><pre className="note-content">{content.slice(0, 150)}</pre></span>
                 </div>
-                <hr/>
-                <span className="content"><pre className="note-content">{content.slice(0, 150)}</pre></span>
-            </div>
-            <div className="bottom-section">
-                <div className="hearts-stats">
-                    <img className='heart-icon' onClick={increaseHeartsFront} src={EmptyHeartSVG} alt=""/>
-                    <p>{hearts}</p>
-                    <img onClick={openComments} className='comment-icon' src={CommentSVG} alt=""/>
-                    <p>{noteData.comments.comments.length}</p>
+                <div className="bottom-section">
+                    <div className="hearts-stats">
+                        <img className='heart-icon' onClick={increaseHeartsFront} src={EmptyHeartSVG} alt=""/>
+                        <p>{hearts}</p>
+                        <img onClick={openComments} className='comment-icon' src={CommentSVG} alt=""/>
+                        <p>{noteData.comments.comments.length}</p>
+                    </div>
+                    {/*<p className='date'>{date.toLocaleDateString()}</p>*/}
                 </div>
-                <p className='date'>{date.toLocaleDateString()}</p>
             </div>
-        </div>
-    )
+        )
 }
 export default Note

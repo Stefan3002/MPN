@@ -7,9 +7,11 @@ import {getLangData} from "../../utils/calculations";
 import {getLanguages} from "../../store/utils/utils-selectors";
 import FireSVG from '../../utils/images/FireSVG.svg'
 import {getUser} from "../../store/user/user-selectors";
-import {deleteNoteBack, modifyNoteBack} from "../../utils/firebase/firebase";
+import {modifyNoteBack} from "../../utils/firebase/firebase";
 import {setUserData} from "../../store/user/user-actions";
 import PenSVG from '../../utils/images/PenSVG.svg'
+import {setError, setErrorMessage} from "../../store/error/error-actions";
+import {setLoading} from "../../store/utils/utils-actions";
 const NoteExtension = ({noCRUD, note}) => {
     const user = useSelector(getUser)
     const {content, title, selectedLang} = note
@@ -24,11 +26,27 @@ const NoteExtension = ({noCRUD, note}) => {
     }
 
     const deleteNoteFront = async () => {
-        // if(confirm("Are you sure you want to delete the note?")) {
-            // This is for real-time update
-            dispatch(setUserData(await deleteNoteBack(user.uid, note.title)))
-            dispatch(setNoteExtended(false))
-        // }
+        try{
+            dispatch(setLoading(true))
+            const response = await fetch(`${process.env.REACT_APP_BACKURL}/notebook/${note.title}`, {
+                method: 'DELETE',
+                body: new URLSearchParams({
+                    uid: user.uid
+                })
+            })
+            const responseData = await response.json()
+            dispatch(setLoading(false))
+            if(!response.ok)
+                throw new Error(responseData.errorMessage)
+            else{
+                // This is for real-time update
+                dispatch(setUserData(responseData.userData))
+                dispatch(setNoteExtended(false))
+            }
+        }catch(err){
+            dispatch(setError(true))
+            dispatch(setErrorMessage(err.message))
+        }
     }
     const modifyNoteFront = async () => {
         await modifyNoteBack(user.uid, note.title)

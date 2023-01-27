@@ -1,0 +1,14 @@
+.profile-pic img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 7px solid white;
+  transition: all 0.2s;
+}
+.profile-pic img:hover, .profile-pic img:focus {
+  filter: grayscale(100);
+  transition: all 0.2s;
+}
+
+/*# sourceMappingURL=profile-image.css.map */

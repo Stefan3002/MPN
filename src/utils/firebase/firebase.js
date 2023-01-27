@@ -23,88 +23,6 @@ const auth = getAuth()
 const googleProvider = new GoogleAuthProvider()
 const db = getFirestore()
 export const googleAuthBack = async () => await signInWithPopup(auth, googleProvider)
-
-export const createUserDocBack = async (userData) => {
-    const {uid, email, photoURL, displayName} = userData.user
-    const userRef = doc(db, 'users', uid)
-    const userSnap = await getDoc(userRef)
-    const createdAt = new Date()
-    if(userSnap.exists())
-        return userSnap
-    else {
-        await setDoc(userRef, {
-            displayName,
-            email,
-            photoURL,
-            notes: [],
-            following: [{
-                uid: 'Kzo7kJosyzQB97nP3w8PrkkDPLh1',
-            }],
-            uid,
-            createdAt
-        })
-        return userSnap
-    }
-}
-export const getUserDataBack = async (uid) => {
-    const docRef = doc(db, 'users', uid)
-    const docSnap = await getDoc(docRef)
-    if(!docSnap.exists())
-        return undefined
-    else {
-        console.log(docSnap.data())
-        return docSnap.data()
-    }
-}
-
-export const addNoteBack = async (title, content, selectedLang, shareable, uid) => {
-    const docRef = doc(db, 'users', uid)
-    const docSnap = await getDoc(docRef)
-    if(!docSnap.exists())
-        return undefined
-    else {
-        const createdAt = new Date()
-        const notes = docSnap.data().notes
-        notes.push({
-            title,
-            content,
-            selectedLang,
-            shareable,
-            hearts: 0,
-            createdAt,
-            uid,
-            comments: {comments:[]}
-        })
-        await setDoc(docRef, {
-            ...docSnap.data(),
-            notes
-        })
-        return await getDoc(docRef)
-    }
-}
-export const getLanguagesBack = async () => {
-    const languages = []
-    const docsSnap = await getDocs(collection(db, 'languages'))
-    docsSnap.forEach((docSnap) => languages.push(docSnap.data()))
-    return languages
-}
-
-export const deleteNoteBack = async (uid, noteTitle) => {
-    const docRef = doc(db, 'users', uid)
-    const docSnap = await getDoc(docRef)
-    if(!docSnap.exists())
-        return undefined
-    else{
-        const {notes} = docSnap.data()
-        const newNotes = notes.filter((note) => note.title !== noteTitle)
-        await setDoc(docRef, {
-            ...docSnap.data(),
-            notes: newNotes
-        })
-        const newDocSnap = await getDoc(docRef)
-        return newDocSnap.data()
-    }
-}
 export const modifyNoteBack = async (uid, noteTitle, newNote) => {
     const docRef = doc(db, 'users', uid)
     const docSnap = await getDoc(docRef)
@@ -297,7 +215,7 @@ export const addCommentBack = async (comment, targetUid, noteTitle, currentUid, 
 
 
 export const transformDateBack = (createdAt) => {
-    return createdAt.toDate()
+    // return createdAt.toDate()
 }
 
 

@@ -1,13 +1,35 @@
 .profile-page-wrapper {
+  max-height: 100vh;
+  overflow: auto;
   text-align: center;
   width: 100%;
+}
+.profile-page-wrapper .middle-section {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+.profile-page-wrapper .middle-section .user-info {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.profile-page-wrapper .profile-image {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: -50px;
+}
+.profile-page-wrapper .profile-image h2 {
+  margin-left: 13px;
+  font-size: 2em;
 }
 .profile-page-wrapper .profile-page {
   animation-name: slide-left;
   animation-duration: 0.3s;
-}
-.profile-page-wrapper .profile-page .profile-img {
-  border-radius: 50%;
 }
 .profile-page-wrapper .preferred-lang {
   font-weight: bold;

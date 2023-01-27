@@ -1,8 +1,4 @@
 import './auth-page.css'
-import GoogleLogo from '../../../utils/images/Google.svg'
-import Button from "../../button/button";
-import {createUserDocBack, googleAuthBack} from "../../../utils/firebase/firebase";
-import {useNavigate} from "react-router";
 import CatchPhrase from "../catch-phrase/catch-phrase";
 import Steps from "../steps/steps";
 import Twomodes from "../twomodes/twomodes";

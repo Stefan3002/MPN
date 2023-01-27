@@ -13,6 +13,7 @@ import Blur from "../blur/blur";
 import NoteExtension from "../note-extension/note-extension";
 import Comments from "../comments/comments";
 import {getCommentNote, getCommentsOpened} from "../../store/notes/notes-selectors";
+import ProfileImage from "../profile-image/profile-image";
 const PublicProfilePage = () => {
 
     const {userUid} = useParams()
@@ -49,7 +50,7 @@ const PublicProfilePage = () => {
                     <h1>{userData.name}</h1>
                 </div>
                 {following ? <img onClick={removeFollowingFront} className='following-icon' src={EyeSVG} alt=""/> : <img onClick={addFollowingFront} className='following-icon' src={followSVG} alt=""/>}
-                <img className='icon' src={userData.photoURL} alt=""/>
+                <ProfileImage imgPath={userData.photoURL} />
                 <p className='subtitle'>Public notes:</p>
                 <NotesViewer noShareable={true} notes={userData.notes} />
             </div> : null}

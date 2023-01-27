@@ -1,9 +1,29 @@
 .profile-page-wrapper
+  max-height: 100vh
+  overflow: auto
+  .middle-section
+    width: 80%
+    margin: 0 auto
+    position: relative
+    .user-info
+      width: 70%
+      margin: 0 auto
+      display: flex
+      justify-content: space-between
+
+  .profile-image
+    margin-top: 10px
+    display: flex
+    align-items: center
+    position: absolute
+    left: 0
+    top: -50px
+    h2
+      margin-left: 13px
+      font-size: 2em
   text-align: center
   width: 100%
   .profile-page
-    .profile-img
-      border-radius: 50%
     animation-name: slide-left
     animation-duration: .3s
   .preferred-lang
